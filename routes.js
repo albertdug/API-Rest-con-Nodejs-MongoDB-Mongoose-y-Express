@@ -45,11 +45,11 @@ module.exports = function(app) {
 			seriestv.temporadas = req.body.temporadas;
 			seriestv.pais = req.body.pais;
 			seriestv.genero = req.body.genero;
-		});
 
-		seriestv.save(function(err){
-			if(!err) console.log('Serie Actualizada');
-			else console.log('ERROR: ' + err);
+			seriestv.save(function(err){
+				if(!err) console.log('Serie Actualizada');
+				else console.log('ERROR: ' + err);
+			});
 		});
 	};
 
