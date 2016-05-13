@@ -11,8 +11,8 @@ module.exports = function(app) {
 	};
 
 	//GET One
-	findByID = function(req, res) {
-		SerieTV.findByID(req.param.id, function(err,seriestv) {
+	findById = function(req, res) {
+		SerieTV.findById(req.params.id, function(err,seriestv) {
 			if(!err) res.send(seriestv);
 			else console.log('ERROR: ' + err);
 		});
@@ -40,7 +40,7 @@ module.exports = function(app) {
 
 	//PUT update
 	updateSerieTV = function(req,res) {
-		SerieTV.findByID(req.param.id, function(err, seriestv) {
+		SerieTV.findById(req.params.id, function(err, seriestv) {
 			seriestv.titulo = req.body.titulo;
 			seriestv.temporadas = req.body.temporadas;
 			seriestv.pais = req.body.pais;
@@ -55,7 +55,7 @@ module.exports = function(app) {
 
 	//DELETE
 	deleteSerieTV = function(req,res) {
-		SerieTV.findByID(req.param.id, function(err, seriestv){
+		SerieTV.findById(req.params.id, function(err, seriestv){
 			seriestv.remove(function(err){
 				if(!err) console.log('Serie Borrada');
 			else console.log('ERROR: ' + err);
@@ -65,7 +65,7 @@ module.exports = function(app) {
 
 	//API Routes
 	app.get('/seriestv', findAllSeriesTV);
-	app.get('/seriestv/:id', findByID);
+	app.get('/seriestv/:id', findById);
 	app.post('/seriestv', addSerieTV);
 	app.put('/seriestv/:id',updateSerieTV);
 	app.delete('/seriestv/:id', deleteSerieTV);
